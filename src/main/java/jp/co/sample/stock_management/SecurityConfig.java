@@ -6,11 +6,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -20,7 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  *
  */
 @Configuration // 設定用のクラス
-@EnableWebMvcSecurity // Spring Securityのウェブ用の機能を利用する
+@EnableWebSecurity // Spring Securityのウェブ用の機能を利用する
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -89,21 +89,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(memberDetailsService)
-			.passwordEncoder(new StandardPasswordEncoder());
+			.passwordEncoder(new BCryptPasswordEncoder());
 	}
 
     /**
      * <pre>
-     * SHA-256アルゴリズムで暗号化する実装を返します.
+     * bcryptアルゴリズムで暗号化する実装を返します.
      * これを指定することでパスワード暗号化やマッチ確認する際に
      * @Autowired
 	 * private PasswordEncoder passwordEncoder;
 	 * と記載するとDIされるようになります。
      * </pre>
-     * @return SHA-256アルゴリズムで暗号化する実装オブジェクト
+     * @return bcryptアルゴリズムで暗号化する実装オブジェクト
      */
     @Bean
     public PasswordEncoder passwordEncoder() {
-    		return new StandardPasswordEncoder();
+    		return new BCryptPasswordEncoder();
     }
 }
