@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+h3{
+	color:#4A9DFB;
+	background-color:#F1F8F8;
+	width:635px;
+	border-left:#4A9DFB solid 4px;
+	text-indent:1em;
+}
+
+.error{
+	color:#ff0000;
+	font-size:15px;
+	font-weight:bold;
+}
+
+a#toInsertMember{
+	margin:0 160px;
+}
+
+th{
+	white-space: nowrap;
+}

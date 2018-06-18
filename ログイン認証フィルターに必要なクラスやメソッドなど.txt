@@ -1,0 +1,33 @@
+ログイン認証フィルターに必要なクラスやメソッドなど
+
+○設定情報保持クラス
+　SecurityConfig
+　　・・・ログイン認証用設定クラス
+
+○サービスクラス
+　MemberDetailsServiceImpl
+　　・・・ログイン後のメンバー情報に権限情報を付与するサービスクラス
+
+○ドメイン
+　LoginMember
+　　・・・Memberドメインに権限(ロール)情報が付与されたドメイン
+
+○JSP
+　以下のようにすると権限毎に表示を変えることができる
+
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+
+<sec:authorize access="hasRole('ROLE_MEMBER') and isAuthenticated()">
+<sec:authentication var="memberName" property="principal.member.name" />
+	<c:out value="${memberName}" />&nbsp;さん
+</sec:authorize>
+
+※上記のタグライブラリを使用する場合はpom.xmlに以下を追加する必要あり
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
+
+○コントローラでログイン情報を取得する方法→SpringBoot本 P130
+○<form:form>タグを使用すると以下のように
+<input type="hidden" name="_csrf" value="a36ab88e-7553-4daa-a582-f88b4e180f0e" />
