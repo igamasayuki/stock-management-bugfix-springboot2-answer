@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * 書籍情報入力フォーム.
  * 
- * @author mikiyo.kitaoka
+ * @author igamasayuki
  *
  */
 public class RegistBookForm {

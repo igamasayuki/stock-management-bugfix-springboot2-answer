@@ -89,7 +89,7 @@ public class BookRepository {
 	 * 
 	 * @return テーブル内で一番値が大きいID.データがない場合はnull
 	 */
-	synchronized public Integer getMaxId() {
+	public Integer getMaxId() {
 		try {
 			Integer maxId = jdbcTemplate.queryForObject("SELECT MAX(id) FROM books;", new MapSqlParameterSource(),
 					Integer.class);

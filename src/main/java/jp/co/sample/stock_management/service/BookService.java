@@ -62,7 +62,7 @@ public class BookService {
 		try {
 			after = sdf.parse(before);
 		} catch (ParseException e) {
-			System.out.println("日付の形式が異なります：例外きゃっちー");
+			System.out.println("日付の形式が異なります");
 			return null;
 		}
 		return after;
